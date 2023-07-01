@@ -1,73 +1,187 @@
 <!DOCTYPE html>
 <html>
 
+<head>
+    <title>Language Learning Tool</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #343a40;
+            color: #fff;
+        }
+
+        .form-control {
+            background-color: #4b545c;
+            color: #fff;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+        }
+
+        .navbar-dark .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .navbar-dark .navbar-nav .nav-link:hover {
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        .logo {
+            font-size: 60px;
+            font-weight: bolder;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 100px;
+        }
+
+        .logo span {
+            color: #ffc107;
+        }
+
+        .section-header {
+            background-color: #343a40;
+            color: #fff;
+            padding: 5px;
+            cursor: pointer;
+            font-weight: 800;
+            font-size: 40px;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+        }
+
+        .section-header:hover {
+            background-color: #495057;
+        }
+    </style>
+</head>
+
 <body>
+    <div class="container">
+        <div class="logo">
+            <h1 class="mt-3 mb-4 logo"><span>Language</span> Learning Tool</h1>
+        </div>
 
-    <h2>Image Translator</h2>
+        <div id="accordion">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="section-header" data-toggle="collapse" data-target="#translateSection"
+                        aria-expanded="false" aria-controls="translateSection">
+                        Translate
+                    </div>
+                    <div class="collapse mt-3" id="translateSection" data-parent="#accordion">
+                        <div class="mt-3">
+                            <input id="translateText" class="form-control" type="text" placeholder="Enter text to be translated" />
+                        </div>
+                        <div class="mt-3">
+                            <select id="sourceLanguage" class="form-control">
+                                <option disabled selected>Translated from</option>
+                                <option value="en">English</option>
+                                <option value="ja">Japanese</option>
+                                <option value="hi">Hindi</option>
+                                <option value="es">Spanish</option>
+                                <!-- Add more languages here -->
+                            </select>
+                        </div>
+                        <div class="mt-3">
+                            <select id="targetLanguage" class="form-control">
+                                <option disabled selected>Translate to</option>
+                                <option value="en">English</option>
+                                <option value="ja">Japanese</option>
+                                <option value="hi">Hindi</option>
+                                <option value="es">Spanish</option>
+                                <!-- Add more languages here -->
+                            </select>
+                        </div>
+                        <div class="mt-3">
+                            <button id="translateButton" class="btn btn-primary" type="button">Translate</button>
+                        </div>
+                        <div class="mt-3">
+                            <input id="translatedText" class="form-control" type="text" placeholder="Translated text will be displayed here" readonly />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="section-header" data-toggle="collapse" data-target="#speechSection"
+                        aria-expanded="false" aria-controls="speechSection">
+                        Text to Speech
+                    </div>
+                    <div class="collapse mt-3" id="speechSection" data-parent="#accordion">
+                        <div class="mt-3">
+                            <input id="speechText" class="form-control" type="text" placeholder="Enter text to hear audio in selected language" />
+                        </div>
+                        <div class="mt-3">
+                            <select id="speechLanguage" class="form-control">
+                                <option disabled selected>Select audio language</option>
+                                <option value="en-US">English</option>
+                                <option value="ja-JP">Japanese</option>
+                                <option value="hi-IN">Hindi</option>
+                                <option value="es-ES">Spanish</option>
+                                <!-- Add more languages here -->
+                            </select>
+                        </div>
+                        <div class="mt-3">
+                            <button id="speakButton" class="btn btn-primary" type="button">Listen</button>
+                        </div>
+                        <div class="mt-3">
+                            <audio id="speechAudio" controls></audio>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="section-header" data-toggle="collapse" data-target="#imageSection" aria-expanded="false"
+                        aria-controls="imageSection">
+                        Image
+                    </div>
+                    <div class="collapse mt-3" id="imageSection" data-parent="#accordion">
+                        <div class="mt-3">
+                            <button id="openCamera" class="btn btn-primary" type="button">Capture Photo</button>
+                            <button id="snap" class="btn btn-primary">Snap Photo</button>
+                        </div>
+                        <div class="mt-3">
+                            <canvas id="canvas" width="640" height="480"></canvas>
+                        </div>
+                        <div class="mt-3">
+                            <label for="imgUpload">Choose image:</label>
+                            <input type="file" id="imgUpload" name="imgUpload">
+                        </div>
+                        <div class="mt-3">
+                            <label for="lang">Choose a language:</label>
+                            <select id="imgLanguage" class="form-control">
+                                <option value="en">English</option>
+                                <option value="ja">Japanese</option>
+                                <option value="hi">Hindi</option>
+                                <option value="es">Spanish</option>
+                                <!-- Add more languages here -->
+                            </select>
+                        </div>
+                        <div class="mt-3">
+                            <button id="uploadButton" class="btn btn-primary" type="button"
+                                onclick="uploadImage()">Submit</button>
+                        </div>
+                        <h3 class="mt-3">Translation:</h3>
+                        <p id="imgTranslation"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <div>
-        <h2>Translate</h2>
-        <input id="translateText" type="text" placeholder="Enter text" />
-        <select id="sourceLanguage">
-            <option value="en">English</option>
-            <option value="ja">Japanese</option>
-            <option value="hi">Hindi</option>
-            <option value="es">Spanish</option>
-            <!-- Add more languages here -->
-        </select>
-        <select id="targetLanguage">
-            <option value="en">English</option>
-            <option value="ja">Japanese</option>
-            <option value="hi">Hindi</option>
-            <option value="es">Spanish</option>
-            <!-- Add more languages here -->
-        </select>
-        <!-- <button onclick="translate()">Translate</button> -->
-        <button id="translateButton" type="button">Translate</button>
 
-        <input id="translatedText" type="text" readonly />
     </div>
 
-    <div>
-        <h2>Text to Speech</h2>
-        <input id="speechText" type="text" placeholder="Enter text" />
-        <select id="speechLanguage">
-            <option value="en-US">English</option>
-            <option value="ja-JP">Japanese</option>
-            <option value="hi-IN">Hindi</option>
-            <option value="es-ES">Spanish</option>
-            <!-- Add more languages here -->
-        </select>
-        <!-- <button onclick="speak()">Speak</button> -->
-        <button id="speakButton" type="button">Speak</button>
-        <audio id="speechAudio" controls></audio>
-    </div>
-
-    <form id="form" enctype="multipart/form-data">
-        <video id="video" width="640" height="480" style="display:none;"></video> <!-- hide the video initially -->
-        <button id="openCamera" type="button">Capture Photo</button>
-        <button id="snap">Snap Photo</button>
-        <canvas id="canvas" width="640" height="480"></canvas>
-        <label for="imgUpload">Choose image:</label><br>
-
-        <input type="file" id="imgUpload" name="imgUpload"><br><br>
-        <label for="lang">Choose a language:</label><br>
-        <select id="imgLanguage">
-            <option value="en">English</option>
-            <option value="ja">Japanese</option>
-            <option value="hi">Hindi</option>
-            <option value="es">Spanish</option>
-            <!-- Add more languages here -->
-        </select><br><br>
-        <!-- <button type="button" onclick="uploadImage()">Submit</button> -->
-        <button id="uploadButton" type="button" onclick="uploadImage()">Speak</button>
-
-    </form>
-
-    <h3>Translation:</h3>
-    <p id="imgTranslation"></p>
-
-    <script src="script.js" ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.section-header').click(function () {
+                var $collapse = $(this).siblings('.collapse');
+                $collapse.collapse('toggle');
+                $('.collapse').not($collapse).collapse('hide');
+            });
+        });
+    </script>
 </body>
 
 </html>

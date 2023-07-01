@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <h2>Image Translator</h2>
+
+    <div>
+        <h2>Translate</h2>
+        <input id="translateText" type="text" placeholder="Enter text" />
+        <select id="sourceLanguage">
+            <option value="en">English</option>
+            <option value="ja">Japanese</option>
+            <option value="hi">Hindi</option>
+            <option value="es">Spanish</option>
+            <!-- Add more languages here -->
+        </select>
+        <select id="targetLanguage">
+            <option value="en">English</option>
+            <option value="ja">Japanese</option>
+            <option value="hi">Hindi</option>
+            <option value="es">Spanish</option>
+            <!-- Add more languages here -->
+        </select>
+        <!-- <button onclick="translate()">Translate</button> -->
+        <button id="translateButton" type="button">Translate</button>
+
+        <input id="translatedText" type="text" readonly />
+    </div>
+
+    <div>
+        <h2>Text to Speech</h2>
+        <input id="speechText" type="text" placeholder="Enter text" />
+        <select id="speechLanguage">
+            <option value="en-US">English</option>
+            <option value="ja-JP">Japanese</option>
+            <option value="hi-IN">Hindi</option>
+            <option value="es-ES">Spanish</option>
+            <!-- Add more languages here -->
+        </select>
+        <!-- <button onclick="speak()">Speak</button> -->
+        <button id="speakButton" type="button">Speak</button>
+        <audio id="speechAudio" controls></audio>
+    </div>
+
+    <form id="form" enctype="multipart/form-data">
+        <video id="video" width="640" height="480" style="display:none;"></video> <!-- hide the video initially -->
+        <button id="openCamera" type="button">Capture Photo</button>
+        <button id="snap">Snap Photo</button>
+        <canvas id="canvas" width="640" height="480"></canvas>
+        <label for="imgUpload">Choose image:</label><br>
+
+        <input type="file" id="imgUpload" name="imgUpload"><br><br>
+        <label for="lang">Choose a language:</label><br>
+        <select id="imgLanguage">
+            <option value="en">English</option>
+            <option value="ja">Japanese</option>
+            <option value="hi">Hindi</option>
+            <option value="es">Spanish</option>
+            <!-- Add more languages here -->
+        </select><br><br>
+        <!-- <button type="button" onclick="uploadImage()">Submit</button> -->
+        <button id="uploadButton" type="button" onclick="uploadImage()">Speak</button>
+
+    </form>
+
+    <h3>Translation:</h3>
+    <p id="imgTranslation"></p>
+
+    <script src="script.js" ></script>
+</body>
+
+</html>

@@ -89,6 +89,7 @@ snap.addEventListener("click", function () {
     snap.style.display = 'none'; // hide the snap button
     canvas.toBlob(function (blob) {
         capturedImage = new File([blob], "snapshot.png");
+        document.getElementById('uploadButton').disabled = false;
     });
 });
 

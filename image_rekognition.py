@@ -5,38 +5,18 @@ import io
 
 
 app = Flask(__name__)
-# cors = CORS(app, resources={
-#     r"/*": {
-#         "origins": "*",
-#         "allow_headers": [
-#             "Content-Type",
-#             "Authorization",
-#             "Access-Control-Allow-Credentials",
-#             "Access-Control-Allow-Origin",
-#             "Access-Control-Allow-Headers",
-#             "Access-Control-Allow-Methods"
-#         ],
-#         "methods": "GET,HEAD,PUT,PATCH,POST,DELETE"
-#     }
-# })
 cors = CORS(app)
 
 
-
-@app.route('/test', methods=['GET'])
-def test():
-    return 'charu'
-
 @app.after_request
 def after_request(response):
-    # response.headers['Access-Control-Allow-Origin'] = '*'
-    # response.headers['Access-Control-Allow-Headers'] = 'Content-Type,Authorization'
+
     return response
 
 
-polly_client = boto3.client('polly')
-translate_client = boto3.client('translate')
-rekognition_client = boto3.client('rekognition')
+polly_client = boto3.client('polly', region_name='ap-northeast-1')
+translate_client = boto3.client('translate', region_name='ap-northeast-1')
+rekognition_client = boto3.client('rekognition', region_name='ap-northeast-1')
 
 
 @app.route('/speak', methods=['POST'])

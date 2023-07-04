@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 import boto3
 import io
 
@@ -21,7 +21,7 @@ rekognition_client = boto3.client('rekognition', region_name='ap-northeast-1')
 
 
 @app.route('/speak', methods=['POST'])
-
+@cross_origin(origin='http://43.206.222.228')
 def text_to_speech():
     data = request.get_json()
     text = data.get('text', '')
@@ -35,7 +35,7 @@ def text_to_speech():
 
 
 @app.route('/translate', methods=['POST'])
-
+@cross_origin(origin='http://43.206.222.228')
 def translate_text():
     data = request.get_json()
     text = data.get('text', '')
@@ -49,6 +49,7 @@ def translate_text():
 
 
 @app.route('/upload', methods=['POST'])
+@cross_origin(origin='http://43.206.222.228')
 def upload_image():
     img = request.files.get("imgUpload")
     language = request.form.get("language")

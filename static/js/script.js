@@ -50,7 +50,7 @@ function translate() {
     var text = document.getElementById('translateText').value;
     var sourceLanguage = document.getElementById('sourceLanguage').value;
     var targetLanguage = document.getElementById('targetLanguage').value;
-    fetch('http://43.206.222.228/translate', {
+    fetch('http://43.206.222.228:5000/translate', {
        
         method: 'POST',
         mode: 'cors',

@@ -13,7 +13,7 @@ def after_request(response):
 
     return response
 
-os.environ['AWS_DEFAULT_REGION'] = 'ap-northeast-1'
+
 
 polly_client = boto3.client('polly', region_name='ap-northeast-1')
 translate_client = boto3.client('translate', region_name='ap-northeast-1')

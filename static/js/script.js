@@ -55,8 +55,7 @@ function translate() {
         method: 'POST',
         mode: 'cors',
         headers: {
-            'Content-Type': 'application/json',
-            'ngrok-skip-browser-warning': true,
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify({ text: text, source_language: sourceLanguage, target_language: targetLanguage }),
     })

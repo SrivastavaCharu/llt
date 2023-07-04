@@ -22,6 +22,7 @@ function speak() {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'ngrok-skip-browser-warning': true,
                 },
                 body: JSON.stringify({ text: translatedText, speechLanguage: speechLanguage }),
             })
@@ -52,6 +53,7 @@ function translate() {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            'ngrok-skip-browser-warning': true,
         },
         body: JSON.stringify({ text: text, source_language: sourceLanguage, target_language: targetLanguage }),
     })

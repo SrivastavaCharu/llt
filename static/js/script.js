@@ -7,6 +7,7 @@ function speak() {
     fetch('http://43.206.222.228:5000/translate', {
       
         method: 'POST',
+        mode: 'cors',
         headers: {
             'Content-Type': 'application/json',
         },
@@ -20,6 +21,7 @@ function speak() {
             fetch('http://43.206.222.228:5000/speak', {
         
                 method: 'POST',
+                mode: 'cors',
                 headers: {
                     'Content-Type': 'application/json',
                    
@@ -51,6 +53,7 @@ function translate() {
     fetch('http://43.206.222.228/translate', {
        
         method: 'POST',
+        mode: 'cors',
         headers: {
             'Content-Type': 'application/json',
             'ngrok-skip-browser-warning': true,
@@ -109,6 +112,7 @@ function uploadImage() {
 
     fetch('http://43.206.222.228:5000/upload', {
         method: 'POST',
+        mode: 'cors',
         body: formData
     })
         .then(response => response.json())

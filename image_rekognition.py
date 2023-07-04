@@ -5,7 +5,7 @@ import io
 
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "*"}})
+CORS(app)
 
 @app.route('/')
 def home():
@@ -25,7 +25,7 @@ rekognition_client = boto3.client('rekognition', region_name='ap-northeast-1')
 
 
 @app.route('/speak', methods=['POST'])
-@cross_origin(origin='http://43.206.222.228')
+@cross_origin()
 def text_to_speech():
     data = request.get_json()
     text = data.get('text', '')
@@ -45,7 +45,7 @@ def text_to_speech():
 
 
 @app.route('/translate', methods=['POST'])
-@cross_origin(origin='http://43.206.222.228')
+@cross_origin()
 def translate_text():
     data = request.get_json()
     text = data.get('text', '')
@@ -63,7 +63,7 @@ def translate_text():
 
 
 @app.route('/upload', methods=['POST'])
-@cross_origin(origin='http://43.206.222.228')
+@cross_origin()
 def upload_image():
     img = request.files.get("imgUpload")
     language = request.form.get("language")

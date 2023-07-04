@@ -31,7 +31,13 @@ def text_to_speech():
                                               Text=text,
                                               LanguageCode=language)
     audio_stream = response["AudioStream"].read()
-    return audio_stream, 200, {'Content-Type': 'audio/mpeg'}
+    headers = {
+        'Content-Type': 'audio/mpeg',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type'
+    }
+    return audio_stream, 200, headers
 
 
 @app.route('/translate', methods=['POST'])
@@ -45,7 +51,12 @@ def translate_text():
                                              SourceLanguageCode=source_language,
                                              TargetLanguageCode=target_language)
     translated_text = result.get('TranslatedText')
-    return jsonify({'translated_text': translated_text})
+    response = jsonify({'translated_text': translated_text})
+    esponse.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
+​
+    return response
 
 
 @app.route('/upload', methods=['POST'])
@@ -64,7 +75,11 @@ def upload_image():
                                                     TargetLanguageCode=language)['TranslatedText']
                     for label in labels]
     translation = ', '.join(translations)
-    return jsonify({'translation': translation})
+    response = jsonify({'translation': translation})
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
+    return response
 
 
 if __name__ == "__main__":

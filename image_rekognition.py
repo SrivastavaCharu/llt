@@ -7,11 +7,15 @@ import io
 app = Flask(__name__)
 cors = CORS(app)
 
+@app.route('/')
+def home():
+    return render_template('index.html')
 
 @app.after_request
 def after_request(response):
 
     return response
+
 
 
 

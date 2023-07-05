@@ -78,12 +78,17 @@ var capturedImage = null;  // Variable to store the captured image
 
 openCameraButton.addEventListener("click", function () {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-        navigator.mediaDevices.getUserMedia({ video: true }).then(function (stream) {
-            video.srcObject = stream;
-            video.play();
-            video.style.display = 'block'; // show the video element
-            snap.style.display = 'block'; // show the snap button
-        });
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function (stream) {
+                video.srcObject = stream;
+                video.play();
+                video.style.display = 'block'; // show the video element
+                snap.style.display = 'block'; // show the snap button
+            })
+            .catch(function (err) {
+                console.log("An error occurred: " + err);
+            });
+
     }
 });
 

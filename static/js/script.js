@@ -92,8 +92,21 @@ openCameraButton.addEventListener("click", function () {
                 console.log("An error occurred: " + err);
             });
 
+    } else if (navigator.getUserMedia) { // Older browsers fallback
+        console.log("Requesting camera access");
+        navigator.getUserMedia({ video: true, audio: false },
+            function (stream) {
+                console.log("Camera access granted");
+                video.srcObject = stream;
+                video.play();
+                video.style.display = 'block'; // show the video element
+                snap.style.display = 'block'; // show the snap button
+            },
+            function (err) {
+                console.log("An error occurred: " + err);
+            });
     } else {
-        console.log("Cannot access media devices");  // debug log
+        console.log("Cannot access media devices");
     }
 });
 

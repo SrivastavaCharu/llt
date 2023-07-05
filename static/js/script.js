@@ -78,7 +78,7 @@ var capturedImage = null;  // Variable to store the captured image
 
 openCameraButton.addEventListener("click", function () {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-        navigator.mediaDevices.getUserMedia({ video: true })
+        navigator.mediaDevices.getUserMedia({ video: true, audio: false  })
             .then(function (stream) {
                 video.srcObject = stream;
                 video.play();

@@ -77,9 +77,12 @@ var openCameraButton = document.getElementById('openCamera');
 var capturedImage = null;  // Variable to store the captured image
 
 openCameraButton.addEventListener("click", function () {
+    console.log("Camera button clicked");
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        console.log("Requesting camera access");
         navigator.mediaDevices.getUserMedia({ video: true, audio: false  })
             .then(function (stream) {
+                console.log("Camera access granted");
                 video.srcObject = stream;
                 video.play();
                 video.style.display = 'block'; // show the video element
@@ -89,6 +92,8 @@ openCameraButton.addEventListener("click", function () {
                 console.log("An error occurred: " + err);
             });
 
+    } else {
+        console.log("Cannot access media devices");  // debug log
     }
 });
 

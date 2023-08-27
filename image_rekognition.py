@@ -29,8 +29,16 @@ rekognition_client = boto3.client('rekognition', region_name='ap-northeast-1')
 def text_to_speech():
     data = request.get_json()
     text = data.get('text', '')
+    VOICE_LANGUAGE_MAP = {
+    'en-US': 'Joanna',
+    'ja-JP': 'Mizuki',
+    'hi-IN': 'Aditi',
+    'es-ES': 'Conchita',
+    }
+
     language = data.get('speechLanguage', 'en-US')
-    response = polly_client.synthesize_speech(VoiceId='Joanna',
+    voice = VOICE_LANGUAGE_MAP.get(language, 'Joanna')
+    response = polly_client.synthesize_speech(VoiceId=voice,
                                               OutputFormat='mp3',
                                               Text=text,
                                               LanguageCode=language)
@@ -77,4 +85,4 @@ def upload_image():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5001, debug=True)

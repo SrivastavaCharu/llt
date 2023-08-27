@@ -8,7 +8,7 @@
             "type": "pwa-chrome",
             "request": "launch",
             "name": "Launch Chrome against 127.0.0.1",
-            "url": "http://43.206.222.228:5000",
+            "url": "http://127.0.0.1:5001",
             "webRoot": "${workspaceFolder}"
         }
     ]

@@ -4,7 +4,7 @@ function speak() {
     var speechLanguage = document.getElementById('speechLanguage').value;
 
     // first call the translate API
-    fetch('http://43.206.222.228:5000/translate', {
+    fetch('http://127.0.0.1:5001/translate', {
       
         method: 'POST',
         mode: 'cors',
@@ -18,7 +18,7 @@ function speak() {
             var translatedText = data.translated_text;
 
             // then call the speak API with the translated text
-            fetch('http://43.206.222.228:5000/speak', {
+            fetch('http://127.0.0.1:5001/speak', {
         
                 method: 'POST',
                 mode: 'cors',
@@ -50,7 +50,7 @@ function translate() {
     var text = document.getElementById('translateText').value;
     var sourceLanguage = document.getElementById('sourceLanguage').value;
     var targetLanguage = document.getElementById('targetLanguage').value;
-    fetch('http://43.206.222.228:5000/translate', {
+    fetch('http://127.0.0.1:5001/translate', {
        
         method: 'POST',
         mode: 'cors',
@@ -132,7 +132,7 @@ function uploadImage() {
 
     formData.append("language", imgLanguage);
 
-    fetch('http://43.206.222.228:5000/upload', {
+    fetch('http://127.0.0.1:5001/upload', {
         method: 'POST',
         mode: 'cors',
         body: formData
